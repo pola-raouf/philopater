@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>about-us - <%= pageTitle %></title>
+  <link rel="stylesheet" href="/css/about-us-test.css">
+</head>
+<body>
+  <%- include('./partials/header') %>
+
+  <section class="about">
+    <h1>ABOUT US</h1>
+    <div class="about-content">
+    <p><strong>Welcome to Philopateer company</strong></p>
+    <p>Since <strong>1994</strong>, our company has been a cornerstone of the Egyptian food supply industry, dedicated to delivering high-quality products to the local market.</p>
+    <p>With over <strong>three decades of experience</strong>, we have built a reputation for reliability, consistency, and a deep commitment to excellence.</p>
+    <p>As a trusted agent for some of the most renowned international brands, we proudly import a diverse range of premium food products...</p>
+
+    <div id="more-content" class="hidden">
+      <p>... from countries including <strong>Europe, China, Malaysia, Thailand, India, Tunisia, Turkey, Indonesia,</strong> and the <strong>United Arab Emirates.</strong></p>
+      <p>Our portfolio is carefully curated to serve a wide range of clients, including <strong>restaurants, hotels, hypermarkets, bakeries</strong>, and other food service establishments across the country.</p>
+      <p>To ensure accessibility for individual customers as well, we have expanded our reach through <strong>online platforms</strong>, making it easier than ever for our products to be delivered directly to their doorstep.</p>
+      <p>At Philopateer, we take pride in our ability to bridge the gap between <strong>international quality and local demand</strong>. Our extensive product range is complemented by an unwavering commitment to customer satisfaction.</p>
+      <p><strong>With a legacy of excellence and a vision for growth</strong>, Philopateer is more than just a supplier – we are a partner in success, dedicated to driving the food industry in Egypt forward.</p>
+    </div>
+
+    <button id="learn-more-btn" class="btn">Learn More</button>
+  </div>
+</section>
+
+  <script src="/js/about-us.js"></script>
+</body>
+</html>

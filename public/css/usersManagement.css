@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #e4ebf6;
+  color: #2c3e50;
+  padding: 40px 20px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+header {
+    position: relative;
+    bottom: 20px;
+  background: #ffffff; /* solid white background */
+  padding: 12px 50px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 12px;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* subtle shadow for depth */
+}
+
+/* ✅ Logout Button */
+.sign-in-btn {
+  padding: 14px 32px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: #2980b9;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+  box-shadow: 0px 4px 8px rgba(41, 128, 185, 0.4);
+  text-decoration: none;
+  margin-left: auto;
+  border: none;
+}
+
+.sign-in-btn:hover {
+  background: #1c6690;
+  transform: scale(1.05);
+  box-shadow: 0px 6px 15px rgba(28, 102, 144, 0.6);
+}
+
+/* ✅ Settings Section */
+.settings-section {
+  position: relative;
+  top: 10px;
+  margin-top: 40px;
+  max-width: 1000px;
+  width: 100%;
+  background: #ffffffa7;
+  border-radius: 20px;
+  padding: 40px 30px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.settings-section h1 {
+  font-size: 3rem;
+  color: #34495e;
+  margin-bottom: 10px;
+}
+
+.settings-section p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  color: #555;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ✅ Settings Cards Grid */
+.settings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+/* ✅ Single Card */
+.settings-card {
+  background: #ffffff;
+  border: 1px solid #dcdcdc;
+  border-radius: 16px;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+}
+
+.settings-card h3 {
+  color: #3498db;
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+}
+
+.settings-card p {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.settings-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.441);
+}
+
+.settings-card canvas {
+  margin-top: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(255, 165, 122, 0.3);
+}
+
+/* ✅ User List Section */
+.users-list {
+  max-width: 800px;
+  margin: 50px auto;
+  color: #2c3e50;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.users-list h2 {
+  color: #34495e;
+  margin-bottom: 25px;
+  font-size: 2rem;
+}
+
+/* ✅ User Card */
+.user-card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  text-align: left;
+}
+
+.user-card h3 {
+  color: #3498db;
+  margin-bottom: 10px;
+}
+
+.user-card p {
+  margin: 5px 0;
+  font-weight: 500;
+  color: #555;
+}
+
+.user-card p strong {
+  color: #2c3e50;
+}
+
+/* ✅ Responsive */
+@media (max-width: 768px) {
+  .settings-section h1 {
+    font-size: 2.2rem;
+  }
+
+  .settings-section p {
+    font-size: 1rem;
+  }
+
+  .settings-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .users-list h2 {
+    font-size: 1.6rem;
+  }
+}

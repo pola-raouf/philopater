@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title><%= pageTitle || 'Dashboard' %></title>
+  <link rel="stylesheet" href="/css/dashboard.css" />
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">Philopater</div>
+    <ul>
+      <li><a href="/homepage">Home</a></li>
+      <li><a href="/about">About Us</a></li>
+      <li><a href="/contact">Contact Us</a></li>
+      <li><a href="/product">Products</a></li>
+      <% if (user && user.isAdmin) { %>
+        <li><a href="/dashboard">Dashboard</a></li>
+      <% } %>
+    </ul>
+    <% if (user) { %>
+      <a href="/logout" class="sign-in-btn">Logout</a>
+    <% } else { %>
+      <a href="/signin" class="sign-in-btn">Sign In</a>
+    <% } %>
+  </nav>
+</header>
+
+<section class="dashboard">
+  <h1 class="dashboard-title">
+    Welcome <%= username ? username : 'User' %>
+  </h1>
+
+  <p class="dashboard-description">
+    <% if (isAdmin) { %>
+      Manage your products and business operations easily.
+    <% } else { %>
+      You are logged in as a regular user. Limited dashboard access.
+    <% } %>
+  </p>
+
+  <div class="dashboard-actions">
+    <!-- ✅ This always goes to the normal product page -->
+    <a href="/product">
+      <button class="modern-btn">View Products</button>
+    </a>
+
+    <!-- ✅ Only for admin users -->
+    <% if (isAdmin) { %>
+      <a href="/settings">
+        <button class="settings-btn">Settings</button>
+      </a>
+    <% } %>
+  </div>
+</section>
+
+<script src="/js/dashboard.js"></script>
+</body>
+</html>

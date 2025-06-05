@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Users Management - <%= pageTitle %></title>
+  <link rel="stylesheet" href="/css/usersManagement.css" />
+</head>
+<body>
+ <%- include('./partials/header') %>
+
+<section class="settings-section">
+  <h1>Users Management</h1>
+  <p>Manage users by viewing, adding, deleting, or updating information.</p>
+
+  <% if (message) { %>
+    <div class="alert alert-<%= message.type %>">
+      <%= message.text %>
+    </div>
+  <% } %>
+
+  <div class="settings-grid">
+
+    <!-- GET USER -->
+    <div class="settings-card">
+      <h3>Get User</h3>
+      <p>Search for user details by username or ID.</p>
+      <form action="/search" method="GET" style="margin-top: 15px; display: flex; flex-direction: column; gap: 10px;">
+         <!--<input type="text" name="query" placeholder="Enter username or ID"  style="padding: 10px; width: 100%; border-radius: 8px; border: none;" /> -->
+        <button type="submit" style="padding: 10px 20px; border-radius: 8px; background: #E76F51; color: white; border: none; cursor: pointer;">Get users</button>
+      </form>
+    </div>
+
+    <!-- INSERT USER -->
+    <div class="settings-card">
+      <h3>Insert User</h3>
+      <p>Add a new user to the system.</p>
+      <form action="/insert" method="post" style="margin-top: 15px; display: flex; flex-direction: column; gap: 10px;">
+        <input type="text" name="username" placeholder="Username" required style="padding: 10px; border-radius: 8px; border: none;" />
+        <input type="email" name="email" placeholder="Email" required style="padding: 10px; border-radius: 8px; border: none;" />
+        <input type="password" name="password" placeholder="Password" required style="padding: 10px; border-radius: 8px; border: none;" />
+         <label style="display: flex; align-items: center; gap: 8px; font-weight: normal; cursor: pointer;">
+      <input type="checkbox" name="admin" />
+      Admin
+    </label>
+        <button type="submit" style="padding: 10px; border-radius: 8px; background: #2A9D8F; color: white; border: none; cursor: pointer;">Insert</button>
+      </form>
+    </div>
+
+    <!-- DELETE USER -->
+    <div class="settings-card">
+      <h3>Delete User</h3>
+      <p>Remove a user by their username or ID.</p>
+      <form action="/delete" method="POST" style="margin-top: 15px; display: flex; flex-direction: column; gap: 10px;">
+        <input type="text" name="username" placeholder="Username " required style="padding: 10px; border-radius: 8px; border: none;" />
+        <button type="submit" style="padding: 10px; border-radius: 8px; background: #E63946; color: white; border: none; cursor: pointer;">Delete</button>
+      </form>
+    </div>
+
+    <!-- UPDATE USER -->
+    <div class="settings-card">
+      <h3>Update User</h3>
+      <p>Modify an existing user's information.</p>
+      <form action="/update" method="POST" style="margin-top: 15px; display: flex; flex-direction: column; gap: 10px;">
+        <input type="text" name="username" placeholder="Username or ID" required style="padding: 10px; border-radius: 8px; border: none;" />
+        <input type="email" name="email" placeholder="New Email" style="padding: 10px; border-radius: 8px; border: none;" />
+        <input type="password" name="password" placeholder="New Password" style="padding: 10px; border-radius: 8px; border: none;" />
+        <button type="submit" style="padding: 10px; border-radius: 8px; background: #F4A261; color: white; border: none; cursor: pointer;">Update</button>
+      </form>
+    </div>
+
+  </div>
+</section>
+
+<% if (users && users.length) { %>
+  <div class="users-list">
+    <h2>User Search Results</h2>
+    <ul>
+      <% users.forEach(user => { %>
+        <li>
+          <strong><%= user.username %></strong> - <%= user.email %>
+        </li>
+      <% }); %>
+    </ul>
+  </div>
+<% } %>
+
+<script src="/Models/userManagementSchema.js"></script>
+</body>
+</html>
