@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title><%= pageTitle || "Payment" %></title>
+    <link rel="stylesheet" href="/css/payment.css" />
+</head>
+<body>
+
+<!-- Checkout Payment Form -->
+<div id="checkoutForm">
+    <h2>Checkout</h2>
+    <form id="paymentForm">
+        <div>
+            <input type="radio" id="radioA" name="payment" value="credit" checked>
+            <label for="radioA">Credit Card</label>
+            <input type="radio" id="radioB" name="payment" value="cash">
+            <label for="radioB">Cash on Delivery</label>
+        </div>
+
+        <div id="visaDetails">
+            <h3>Credit Card Details</h3>
+            <input type="text" placeholder="Card Number" required minlength="16" maxlength="16" class="card-input" />
+            <input type="text" id="expiryDate" placeholder="MM/YY" maxlength="5" required class="card-input" />
+            <input type="text" placeholder="CVV" required minlength="3" maxlength="3" class="card-input" />
+            <input type="text" placeholder="Cardholder Name" required class="card-input" />
+        </div>
+
+        <div id="cash-details" style="display: none;">
+            <h3>Cash on Delivery</h3>
+            <p>Pay when you receive your order</p>
+        </div>
+
+        <button type="submit">Place Order</button>
+    </form>
+</div>
+
+<!-- Order Success Modal -->
+<div id="orderSuccessModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>✅ Order Placed Successfully!</h2>
+        <p>Thank you for shopping with us. Your order is being processed.</p>
+    </div>
+</div>
+
+<script>
+  const userCart = JSON.parse('<%- JSON.stringify(cartItems || []) %>');
+  console.log("userCart =", userCart);
+</script>
+
+<script src="/js/payment.js"></script>
+</body>
+</html>

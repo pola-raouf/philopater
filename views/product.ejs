@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Products</title>
+  <link rel="stylesheet" href="/css/product.css" />
+</head>
+<body>
+
+<!-- Include header partial -->
+<%- include('partials/header') %>
+<div class="search-bar-container">
+  <input type="text" id="searchInput" placeholder="Search for a product..." />
+</div>
+<div id="container" style="display: flex; flex-wrap: wrap;">
+  <% products.forEach(product => { %>
+    <div class="item" style="margin: 10px; border: 1px solid #ccc; padding: 10px;">
+      <img src="<%= product.image %>" alt="<%= product.name %>" style="width: 150px; height: 150px;">
+      <div class="item-details">
+        <strong><%= product.name %></strong>
+        <p>Price: <%= product.price %></p>
+        <p>Country: <%= product.country %></p>
+      </div>
+      <div class="quantity-controls">
+        <button class="decbtn">-</button>
+        <span class="cont">0</span>
+        <button class="incbtn">+</button>
+      </div>
+    </div>
+  <% }) %>
+</div>
+
+
+
+<button id="addToCartBtn">Add to Cart</button>
+<button id="topButton">↑</button>
+
+<div id="page" style="display: none;">
+  <div id="cartContainer"></div>
+  <div class="checkout-buttons">
+  <button id="backbtn">Back to Shopping</button>
+  <button id="checkoutBtn">Checkout</button>
+</div>
+</div>
+
+<script src="/js/product.js"></script>
+</body>
+</html>

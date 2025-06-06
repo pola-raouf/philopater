@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title><%= pageTitle || "Product Management" %></title>
+  <link rel="stylesheet" href="/css/productsManagement.css" />
+</head>
+<body>
+  <%- include('./partials/header') %>
+
+  <section class="settings-section">
+    <h1>Products Management</h1>
+    <p>Manage your product inventory by adding, removing, updating, or viewing products.</p>
+
+    <div class="settings-grid">
+
+      <!-- GET PRODUCT -->
+      <div class="settings-card" >
+        <h3>Get Product</h3>
+        <p>Search for a product by name or ID.</p>
+        <form action="/search_product" method="get" style="margin-top: 15px; display: flex; flex-direction: column; gap: 10px;">
+          <button type="submit" style="padding: 10px; border-radius: 8px; background: #E76F51; color: white; border: none; cursor: pointer;">Search</button>
+        </form>
+      </div>
+
+      <!-- INSERT PRODUCT -->
+      <div class="settings-card" >
+        <h3>Insert Product</h3>
+        <p>Add a new product to your inventory.</p>
+        <form action="/insert_product" id="insertForm" method="post" enctype="multipart/form-data" style="margin-top: 15px; display: flex; flex-direction: column; gap: 10px;">
+          <input type="text" name="name" placeholder="Product Name" required style="padding: 10px; border-radius: 8px; border: none;" />
+          <input type="number" name="price" placeholder="Price" required style="padding: 10px; border-radius: 8px; border: none;" />
+          <input type="text" name="country" placeholder="country" required style="padding: 10px; border-radius: 8px; border: none;" />
+          <input type="number" name="quantity" placeholder="QUANTITY" required style="padding: 10px; border-radius: 8px; border: none;" />
+          <input type="file" name="image" accept="image/*" required style="padding: 10px; border-radius: 8px; border: none;" />
+          <button type="submit" style="padding: 10px; border-radius: 8px; background: #2A9D8F; color: white; border: none; cursor: pointer;">Insert</button>
+        </form>
+      </div>
+
+      <!-- DELETE PRODUCT -->
+      <div class="settings-card">
+        <h3>Delete Product</h3>
+        <p>Remove a product by its name or ID.</p>
+        <form action="/delete_product"id="deleteForm" method="post" style="margin-top: 15px; display: flex; flex-direction: column; gap: 10px;">
+          <input type="text" name="productname" placeholder="Product Name or ID" required style="padding: 10px; border-radius: 8px; border: none;" />
+          <button type="submit" style="padding: 10px; border-radius: 8px; background: #E63946; color: white; border: none; cursor: pointer;">Delete</button>
+        </form>
+      </div>
+
+      <!-- UPDATE PRODUCT -->
+      <div class="settings-card">
+        <h3>Update Product</h3>
+        <p>Update details of an existing product.</p>
+        <form action="/update_product" id="updateForm"method="post" style="margin-top: 15px; display: flex; flex-direction: column; gap: 10px;">
+          <input type="text" name="productId" placeholder="Product Name or ID" required style="padding: 10px; border-radius: 8px; border: none;" />
+          <input type="text" name="newCategory" placeholder="New Category" style="padding: 10px; border-radius: 8px; border: none;" />
+          <input type="number" name="newPrice" placeholder="New Price" style="padding: 10px; border-radius: 8px; border: none;" />
+          <input type="number" name="quntity" placeholder="QUANTITY" required style="padding: 10px; border-radius: 8px; border: none;" />
+          <input type="file" name="image" accept="image/*"  style="padding: 10px; border-radius: 8px; border: none;" />
+          <button type="submit" style="padding: 10px; border-radius: 8px; background: #F4A261; color: white; border: none; cursor: pointer;">Update</button>
+        </form>
+      </div>
+
+    </div>
+  </section>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="/public/js/analytics.js"></script>
+  <script>
+  // INSERT PRODUCT
+  $('#insertForm').submit(function(e){
+    e.preventDefault();
+    var formData = new FormData(this);
+
+    $.ajax({
+      url: '/insert_product',
+      type: 'POST',
+      data: formData,
+      contentType: false,
+      processData: false,
+      success: function(response){
+        if(response.success){
+          alert('✅ تم الإدخال بنجاح');
+          document.getElementById('insertForm').reset();
+        } else {
+          alert('❌ فشل في الإدخال: ' + response.message);
+        }
+      },
+      error: function(xhr){
+        alert('❌ خطأ: ' + xhr.responseText);
+      }
+    });
+  });
+
+  // DELETE PRODUCT
+  $('#deleteForm').submit(function(e){
+    e.preventDefault();
+    var formData = $(this).serialize(); // مش محتاج FormData هنا
+
+    $.ajax({
+      url: '/delete_product',
+      type: 'POST',
+      data: formData,
+      success: function(response){
+        alert('✅ تم الحذف بنجاح');
+        document.getElementById('deleteForm').reset();
+      },
+      error: function(xhr){
+        alert('❌ فشل في الحذف: ' + xhr.responseText);
+      }
+    });
+  });
+
+  // UPDATE PRODUCT
+  $('#updateForm').submit(function(e){
+    e.preventDefault();
+    var formData = new FormData(this);
+
+    $.ajax({
+      url: '/update_product',
+      type: 'POST',
+      data: formData,
+      contentType: false,
+      processData: false,
+      success: function(response){
+        alert('✅ تم التحديث بنجاح');
+        document.getElementById('updateForm').reset();
+      },
+      error: function(xhr){
+        alert('❌ فشل في التحديث: ' + xhr.responseText);
+      }
+    });
+  });
+  
+</script>
+
+
+</body>
+</html>

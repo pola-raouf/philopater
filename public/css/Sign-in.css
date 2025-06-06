@@ -1,0 +1,306 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+  --primary-color: #34495e;
+  --secondary-color: #34495e;
+  --accent-color: #34495e;
+  --dark-bg: #191919;
+  --light-text: #fff;
+  --card-bg: rgba(255, 255, 255, 0.1);
+  --hover-effect: rgba(255, 165, 122, 0.4);
+  --error-color: #2c3e50;
+  --success-color: #2ecc71;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #e4ebf6;
+  color: var(--light-text);
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.auth-container {
+  display: flex;
+  position: relative;
+  top: 40px;
+  width: 850px;
+  height: auto;
+  min-height: 600px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  flex-direction: row-reverse;
+}
+
+.signin-box {
+  width: 50%;
+  padding: 25px;
+  background: linear-gradient(to bottom right, #f4f6fb, #e7edf5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #2c3e50;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.05);
+}
+
+.form-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  max-height: 100%;
+  overflow-y: auto;
+  padding: 5px;
+}
+
+.signin-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+.input-field {
+  margin-bottom: 12px;
+  position: relative;
+}
+
+.input-field label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  color: #2c3e50; /* ✅ Black Label Text */
+  font-size: 13px;
+}
+
+.input-field input {
+  width: 100%;
+  padding: 12px 12px 12px 40px;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: 6px;
+  font-size: 14px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #2c3e50;
+  transition: all 0.3s ease;
+}
+
+.input-field input:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px var(--hover-effect);
+  outline: none;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.input-field .icon {
+  position: absolute;
+  left: 12px;
+  top: 38px;
+  font-size: 15px;
+  color: var(--accent-color);
+}
+
+.input-field .toggle-password {
+  position: absolute;
+  right: 12px;
+  top: 38px;
+  font-size: 15px;
+  color: var(--accent-color);
+  cursor: pointer;
+}
+
+.input-field input:hover {
+  border-color: #2980b9;
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0 3px rgba(41, 128, 185, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+
+.signin-button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: var(--light-text);
+  border: none;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 8px;
+  display: inline;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: black;
+}
+
+.signin-button:hover {
+  background: linear-gradient(135deg, #1c6690, #2980b9); /* ✅ Improved Hover */
+  transform: scale(1.03);
+  box-shadow: 0px 6px 14px rgba(41, 128, 185, 0.5);
+}
+
+.loading-icon {
+  display: none;
+  animation: spin 1s linear infinite;
+}
+
+.login-text {
+  text-align: center;
+  margin-top: 15px;
+  color: #2c3e50;
+  font-size: 13px;
+}
+
+.login-text a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.login-text a:hover {
+  color: var(--secondary-color);
+  text-decoration: underline;
+}
+
+.welcome-section {
+  width: 50%;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: var(--light-text);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.welcome-title {
+  font-size: 32px;
+  margin-bottom: 15px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.password-requirements {
+  background: rgba(255, 255, 255, 0.5);
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin: 10px 0 15px;
+  font-size: 13px;
+  color: #2c3e50;
+  border-left: 5px solid var(--accent-color);
+}
+
+.password-requirements h4 {
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--accent-color);
+}
+
+.password-requirements ul {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.password-requirements li {
+  margin-bottom: 8px;
+  color: #2c3e50;
+}
+
+.password-requirements li.valid {
+  color: var(--success-color);
+}
+
+.password-requirements li.valid:before {
+  content: '✓';
+  margin-right: 6px;
+  color: var(--success-color);
+}
+
+.error-message {
+  color: var(--error-color);
+  font-size: 12px;
+  margin-top: 3px;
+  font-weight: 400;
+}
+
+.input-field.error input {
+  border-color: var(--error-color);
+  background: rgba(255, 74, 74, 0.05);
+}
+
+.input-field.error .icon {
+  color: var(--error-color);
+}
+
+/* ✅ Responsive for tablets and below */
+@media (max-width: 992px) {
+  .auth-container {
+    width: 90%;
+    flex-direction: column;
+    height: auto;
+  }
+
+  .signin-box,
+  .welcome-section {
+    width: 100%;
+    padding: 30px 20px;
+    box-shadow: none;
+  }
+
+  .welcome-title {
+    font-size: 26px;
+  }
+}
+
+/* ✅ Responsive for mobile phones */
+@media (max-width: 600px) {
+  .signin-title {
+    font-size: 20px;
+  }
+
+  .welcome-title {
+    font-size: 22px;
+  }
+
+  .signin-button {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .input-field input {
+    font-size: 13px;
+    padding: 10px 10px 10px 35px;
+  }
+
+  .input-field .icon,
+  .input-field .toggle-password {
+    font-size: 13px;
+    top: 32px;
+  }
+
+  .password-requirements {
+    font-size: 12px;
+    padding: 10px 15px;
+  }
+
+  .login-text {
+    font-size: 12px;
+  }
+}

@@ -1,0 +1,142 @@
+<style>
+header {
+  background: #ffffff; /* solid white background */
+  padding: 12px 50px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 12px;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* subtle shadow for depth */
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #3498db; /* blue accent */
+  margin-right: 30px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+nav ul {
+  list-style: none;
+  position: relative;
+  right: -20px;
+  display: flex;
+  gap: 20px;
+  flex-grow: 1;
+}
+
+nav ul li a {
+  color: #34495e; /* dark muted blue */
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #2980b9; /* bright blue hover */
+  
+}
+
+.sign-in-btn {
+  padding: 14px 32px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: #2980b9;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+  box-shadow: 0px 4px 8px rgba(41, 128, 185, 0.4);
+  text-decoration: none;
+  margin-left: auto;
+  border: none;
+}
+
+.sign-in-btn:hover {
+  background: #1c6690;
+  transform: scale(1.05);
+  box-shadow: 0px 6px 15px rgba(28, 102, 144, 0.6);
+}
+
+/* Media Query for Responsive Navbar */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 20px;
+  }
+
+  .logo {
+    margin-bottom: 10px;
+  }
+
+  nav {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav ul {
+    position: static;
+    left: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  nav ul li {
+    width: auto;
+  }
+
+  nav ul li a {
+    display: block;
+    padding: 8px 0;
+    text-align: center;
+  }
+
+  .sign-in-btn {
+    margin: 20px 0 0 0;
+    align-self: center;
+  }
+}
+
+</style>
+<script>
+  const isChrome = /Chrome/.test(navigator.userAgent) &&
+          !/Edg/.test(navigator.userAgent) &&
+          !/OPR/.test(navigator.userAgent) &&
+          !/Brave/.test(navigator.userAgent);
+  if (!isChrome) {
+    window.stop();
+    alert("This webpage only runs on Chrome.");
+  }
+</script>
+
+<header>
+  <nav>
+    <div class="logo">Philopater</div>
+    <ul>
+      <li><a href="/homepage">Home</a></li>
+      <li><a href="/about">About Us</a></li>
+      <li><a href="/contact">Contact Us</a></li>
+      <li><a href="/product">Products</a></li>
+      <% if (user && user.isAdmin) { %>
+        <li><a href="/dashboard">Dashboard</a></li>
+      <% } %>
+    </ul>
+    <% if (typeof user !== 'undefined' && user) { %>
+      <a href="/logout" class="sign-in-btn">Logout</a>
+    <% } else { %>
+      <a href="/signin" class="sign-in-btn">Sign Up</a>
+    <% } %>
+  </nav>
+</header>

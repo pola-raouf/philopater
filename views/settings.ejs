@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title><%= pageTitle || 'settings' %></title>
+  <link rel="stylesheet" href="/css/settings.css" />
+</head>
+<body>
+  <%- include('./partials/header') %>
+<section class="settings-section">
+  <h1>Settings</h1>
+  <p>Customize your preferences and manage account settings.</p>
+  <div class="settings-grid">
+
+    <!-- <div class="settings-card clickable-card" onclick="handleAccountClick()">
+      <h3>product</h3>
+      <p>edit , insert, or get product info.</p>
+    </div> -->
+<a href="/product_info" class="settings-card clickable-card" style="text-decoration: none; color: inherit;">
+      <h3>Products Management</h3>
+      <p>edit , insert, or get product info.</p>
+    </a>
+    <a href="/analytics" class="settings-card clickable-card" style="text-decoration: none; color: inherit;">
+      <h3>Purchase Analytics</h3>
+      <p>See the analytics of your purchases here.</p>
+    </a>
+
+      <a href="/users" class="settings-card clickable-card" style="text-decoration: none; color: inherit;">
+        <h3>Users Management</h3>
+        <p>Manage users, add, update or delete accounts.</p>
+      </a>
+  </div>
+</section>
+</body>
+</html>

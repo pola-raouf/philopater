@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title><%= pageTitle || "Live Product Update" %></title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    #log {
+      background: #f4f4f4;
+      padding: 15px;
+      border-radius: 8px;
+      height: 300px;
+      overflow-y: auto;
+    }
+  </style>
+</head>
+<body>
+  <h1>📡 Live Product Events</h1>
+  <div id="log">Waiting for updates...</div>
+
+  <script>
+    const logBox = document.getElementById('log');
+    const source = new EventSource('/product');
+
+    source.onmessage = function(event) {
+      const message = event.data;
+      const time = new Date().toLocaleTimeString();
+
+      // Show the raw message in log
+      logBox.innerHTML += `<p><strong>[${time}]</strong> ${message}</p>`;
+      logBox.scrollTop = logBox.scrollHeight;
+
+      // If the server sends the "refresh" command
+      if (message === "refresh-products") {
+        logBox.innerHTML += `<p style="color: green;"><strong>🔄 Reloading products...</strong></p>`;
+        setTimeout(() => location.reload(), 1000); // Reload page after 1 second
+      }
+    };
+
+    source.onerror = function() {
+      logBox.innerHTML += `<p style="color:red;">❌ Connection error or closed.</p>`;
+      source.close();
+    };
+  </script>
+</body>
+</html>

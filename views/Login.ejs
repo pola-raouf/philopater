@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title><%= pageTitle || 'Login' %></title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link rel="stylesheet" href="/css/Login.css" />
+</head>
+<body>
+
+<%- include('./partials/header.ejs') %>
+
+<div class="login-container">
+  <div class="login-box">
+    <h1 class="login-title">Login</h1>
+
+    <% if (typeof errorMessage !== 'undefined' && errorMessage) { %>
+      <div class="error-message"><%= errorMessage %></div>
+    <% } %>
+
+    <form action="/login" method="POST" id="loginForm">
+
+      <div class="input-field">
+        <i class="fas fa-user icon"></i>
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" placeholder="Enter your email" required />
+      </div>
+
+      <div class="input-field">
+        <i class="fas fa-lock icon"></i>
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" placeholder="Enter your password" required />
+        <i class="fas fa-eye-slash toggle-password" id="togglePassword"></i>
+      </div>
+
+      <button type="submit" class="login-button" id="loginButton">
+        <span class="button-text">Login</span>
+        <i class="fas fa-spinner fa-spin loading-icon" id="loadingIcon" style="display: none;"></i>
+      </button>
+
+    </form>
+
+    <p class="signup-text">Don't have an account? <a href="/signin">Sign Up</a></p>
+  </div>
+
+  <div class="welcome-section">
+    <h1 class="welcome-title">WELCOME BACK!</h1>
+  </div>
+</div>
+
+<script src="/js/Login.js"></script>
+</body>
+</html>

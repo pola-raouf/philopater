@@ -1,0 +1,245 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ✅ BODY */
+body {
+  background: #e4ebf6;
+  color: #2c3e50;
+  padding: 20px;
+  padding-top: 120px; /* space for fixed navbar */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+header {
+    position: relative;
+    bottom: 100px;
+  background: #ffffff; /* solid white background */
+  padding: 12px 50px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 12px;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* subtle shadow for depth */
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #3498db; /* blue accent */
+  margin-right: 30px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+nav ul {
+  list-style: none;
+  position: relative;
+  right: -20px;
+  display: flex;
+  gap: 20px;
+  flex-grow: 1;
+}
+
+nav ul li a {
+  color: #34495e; /* dark muted blue */
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #2980b9; /* bright blue hover */
+  
+}
+/* ✅ LOGOUT BUTTON */
+.sign-in-btn {
+  padding: 14px 32px;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  background: #2980b9;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+  box-shadow: 0px 4px 8px rgba(41, 128, 185, 0.4);
+  text-decoration: none;
+  border: none;
+}
+
+.sign-in-btn:hover {
+  background: #1c6690;
+  transform: scale(1.05);
+  box-shadow: 0px 6px 15px rgba(28, 102, 144, 0.6);
+}
+
+/* ✅ DASHBOARD CONTENT */
+.dashboard {
+  position: relative;
+  top: 40px;
+  padding: 40px 20px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+  width: 100%;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.dashboard-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: #2c3e50;
+  margin-bottom: 20px;
+}
+
+.dashboard-description {
+  font-size: 1.2rem;
+  color: #555;
+  margin-bottom: 30px;
+  line-height: 1.6;
+  max-width: 600px;
+}
+
+/* ✅ ACTION BUTTONS */
+.dashboard-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ✅ VIEW PRODUCTS BUTTON */
+.modern-btn {
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #3498db, #2980b9); /* cool blue */
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 4px 10px rgba(52, 152, 219, 0.4);
+  text-decoration: none;
+}
+
+.modern-btn:hover {
+  background: linear-gradient(135deg, #2471a3, #1c6690);
+  transform: scale(1.05);
+  box-shadow: 0px 6px 14px rgba(52, 152, 219, 0.6);
+}
+
+/* ✅ SETTINGS BUTTON */
+.settings-btn {
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background: linear-gradient(135deg, #16a085, #1abc9c); /* teal green */
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 4px 10px rgba(26, 188, 156, 0.4);
+  text-decoration: none;
+}
+
+.settings-btn:hover {
+  background: linear-gradient(135deg, #138d75, #17a589);
+  transform: scale(1.05);
+  box-shadow: 0px 6px 14px rgba(26, 188, 156, 0.6);
+}
+
+/* ✅ RESPONSIVE */
+@media (max-width: 768px) {
+  nav ul {
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+  }
+
+  .dashboard-title {
+    font-size: 2.2rem;
+  }
+
+  .dashboard-description {
+    font-size: 1rem;
+  }
+
+  .dashboard-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .modern-btn,
+  .settings-btn {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  
+}
+
+/* Media Query for Responsive Navbar */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px 20px;
+  }
+
+  .logo {
+    margin-bottom: 10px;
+  }
+
+  nav {
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  nav ul {
+    position: static;
+    left: 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  nav ul li {
+    width: auto;
+  }
+
+  nav ul li a {
+    display: block;
+    padding: 8px 0;
+    text-align: center;
+  }
+
+  .sign-in-btn {
+    margin: 20px 0 0 0;
+    align-self: center;
+  }
+}
+  

@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+  --primary-color: #34495e;
+  --secondary-color: #34495e;
+  --accent-color: #34495e;
+  --hover-effect: #F4A261;
+  --light-text: #fff;
+  --dark-bg: #191919;
+  --card-bg: rgba(255, 255, 255, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #e4ebf6;
+  color: var(--light-text);
+  min-height: 100vh;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 12px 50px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 10px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-color);
+  margin-right: 30px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  flex-grow: 1;
+}
+
+nav ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: var(--hover-effect);
+}
+
+/* Main container */
+.login-container {
+  display: flex;
+  width: 850px;
+  height: auto;
+  min-height: 600px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--card-bg);
+  backdrop-filter: blur(10px);
+  flex-direction: row-reverse;
+}
+
+.login-box {
+  width: 50%;
+  padding: 25px;
+  background: linear-gradient(to bottom right, #f4f6fb, #e7edf5);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #2c3e50;
+  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.05);
+}
+
+.login-title {
+  font-size: 24px;
+  margin-bottom: 10px;
+  text-align: center;
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+.input-field {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.input-field label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 14px;
+}
+
+.input-field input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  font-size: 15px;
+  background: #f4f6fb;
+  color: #2c3e50;
+  transition: all 0.3s ease;
+}
+
+.input-field input:hover {
+  border-color: #2980b9;
+  background-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0 3px rgba(41, 128, 185, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.login-button {
+  width: 100%;
+  padding: 14px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: var(--light-text);
+  border: none;
+  border-radius: 50px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: black;
+}
+
+.login-button:hover {
+  background: linear-gradient(135deg, #1c6690, #2980b9); /* ✅ Improved Hover */
+  transform: scale(1.03);
+  box-shadow: 0px 6px 14px rgba(41, 128, 185, 0.5);
+}
+
+.signup-text {
+  text-align: center;
+  margin-top: 20px;
+  color: #2c3e50;
+  font-size: 13px;
+}
+
+.signup-text a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.signup-text a:hover {
+  color: var(--secondary-color);
+  text-decoration: underline;
+}
+
+.welcome-section {
+  width: 50%;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  color: var(--light-text);
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.welcome-title {
+  font-size: 32px;
+  margin-bottom: 15px;
+  font-weight: 700;
+}
+
+.welcome-message {
+  font-size: 16px;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 950px) {
+  .login-container {
+    width: 95%;
+    height: auto;
+    flex-direction: column;
+  }
+
+  .login-box, .welcome-section {
+    width: 100%;
+    padding: 30px;
+  }
+
+  .welcome-section {
+    order: -1;
+  }
+}
