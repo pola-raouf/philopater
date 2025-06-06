@@ -47,7 +47,8 @@
 
 <script>
     // تأكد من أن cartItems موجودة ومهيأة كصفيف
-    const userCart = <%- JSON.stringify(Array.isArray(cartItems) ? cartItems : []) %>;
+    const userCart = JSON.parse('<%- JSON.stringify(cartItems || []) %>');
+  console.log("userCart =", userCart);
 </script>
 <script src="/js/payment.js"></script>
 </body>
