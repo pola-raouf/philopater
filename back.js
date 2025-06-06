@@ -52,23 +52,26 @@ app.use('/', require('./routes/products_route'));
 app.use('/', require('./routes/protectedRoutes'));
 app.use('/', require('./routes/authRoutes'));
 
+const { router: sseRouter } = require('./routes/sse');
+app.use('/', sseRouter);
+
 // ✅ Mount order routes under /api
 const orderRoutes = require('./routes/order');
 app.use('/api', orderRoutes);
 
-// 404 handler (optional but recommended)
+// Route not found
 app.use((req, res) => {
-  res.status(404).render('404', { pageTitle: 'Page Not Found' });
+  res.status(404).render('404'); // هنا المشكلة لو الملف مش موجود
 });
 
-// Global error handler (optional)
+// Internal server error
 app.use((err, req, res, next) => {
   console.error(err.stack);
-  res.status(500).render('500', { pageTitle: 'Server Error', error: err });
+  res.status(500).render('500'); // هنا المشكلة لو الملف مش موجود
 });
 
 // ✅ Start server
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
+  console.log(🚀 Server running on http://localhost:${PORT});
 });
