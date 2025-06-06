@@ -16,7 +16,7 @@ const insertProduct = async (req, res) => {
       });
     }
 
-    const imagePath = /image/${folder}/${fileName};
+    const imagePath = `/image/${folder}/${fileName}`;
 
 
     const product = new Product({
