@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/userManagementSchema');
+const User = require('../Models/userManagementSchema');
 const JWT_SECRET = process.env.JWT_SECRET || 'supersecret';
 
 async function syncSessionUser(req, res, next) {
