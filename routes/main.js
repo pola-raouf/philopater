@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/userManagementSchema');
+const User = require('../Models/userManagementSchema');
 const Product=require('../Models/productManagementSchema')
 const { requireLogin, requireAdmin } = require('../middleware/auth');
 const { verifyToken, requireJwtAdmin } = require('../middleware/jwtAuth');
