@@ -1,4 +1,6 @@
 const Product = require('../Models/productManagementSchema');
+const { sendProductRefreshEvent } = require('../routes/sse'); // المسار حسب مكان الملف
+ // 🔄 إشعار للـ frontend يعمل refresh
 
 const insertProduct = async (req, res) => {
   try {
@@ -14,7 +16,7 @@ const insertProduct = async (req, res) => {
       });
     }
 
-    const imagePath = `/image/${folder}/${fileName}`;
+    const imagePath = /image/${folder}/${fileName};
 
 
     const product = new Product({
@@ -26,6 +28,7 @@ const insertProduct = async (req, res) => {
     });
 
     await product.save();
+sendProductRefreshEvent();
 
     res.status(200).json({
       success: true,
@@ -56,12 +59,12 @@ const searchProduct = async (req, res) => {
 const deleteProduct = async (req, res) => {
     try {
         const name = req.body.productname.trim();
-        const result = await Product.deleteOne({ name: { $regex: new RegExp(`^${name}$`, 'i') } });
+        const result = await Product.deleteOne({ name: { $regex: new RegExp(^${name}$, 'i') } });
 
         if (result.deletedCount === 0) {
             return res.status(404).json({ success: false, message: 'product not found' });
         }
-
+        sendProductRefreshEvent();
         res.status(200).json({ success: true, message: 'PRODUCT DELETE SUCCESSFULLY' });
     } catch (err) {
         console.error('🔥 Error deleting product:', err);
@@ -85,6 +88,7 @@ const updateProduct = async (req, res) => {
         if (!updated) {
             return res.status(404).json({ success: false, message: 'product not found' });
         }
+        sendProductRefreshEvent();
         res.status(200).json({ success: true, message: "Product updated successfully" });
     } catch (err) {
         console.error(err);
