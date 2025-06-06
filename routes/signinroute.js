@@ -4,7 +4,7 @@ const authController = require('../controller/signin_check');
 
 // تحقق من أن المسارات مطابقة لما في النموذج HTML
 router.route('/signin')
-  .get(authController.getSignUp)
-  .post(authController.postSignUp);
+  .get(authController.getRegister)
+  .post(authController.postRegister);
 
-module.exports = router;
+module.exports = router;
