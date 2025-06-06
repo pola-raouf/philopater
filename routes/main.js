@@ -103,7 +103,7 @@ router.get('/login', (req, res) => {
 });
 
 router.get('/signin', (req, res) => {
-  res.render('sign-in', { pageTitle: 'Sign IN' });
+  res.render('Sign-in', { pageTitle: 'Sign IN' });
 });
 
 module.exports = router;
