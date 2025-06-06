@@ -1,4 +1,4 @@
-const User = require('../models/userManagementSchema');
+const User = require('../Models/userManagementSchema');
 const bcrypt = require('bcryptjs');
 const  insert_users = async(req, res,next) =>{
     try{
