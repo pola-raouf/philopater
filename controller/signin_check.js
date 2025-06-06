@@ -1,5 +1,5 @@
 const bcrypt = require('bcryptjs');
-const User = require('../models/userManagementSchema');
+const User = require('../Models/userManagementSchema');
 
 exports.getSignUp = (req, res) => {
   res.render('Sign-in', {
