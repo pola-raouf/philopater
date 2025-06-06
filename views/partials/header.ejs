@@ -89,7 +89,7 @@ nav ul li a:hover {
         <li><a href="/dashboard">Dashboard</a></li>
       <% } %>
     </ul>
-    <% if (user) { %>
+    <% if (typeof user !== 'undefined' && user) { %>
       <a href="/logout" class="sign-in-btn">Logout</a>
     <% } else { %>
       <a href="/signin" class="sign-in-btn">Sign Up</a>
