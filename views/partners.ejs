@@ -1,0 +1,91 @@
+<%- include('./partials/header') %>
+
+<h1>Our Partners</h1>
+<div class="partners-container">
+  <% companies.forEach(company => { %>
+    <div class="partner-card">
+      <img src="<%= company.logo %>" alt="<%= company.name %> Logo">
+      <h3><%= company.name %></h3>
+    </div>
+  <% }) %>
+</div>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: linear-gradient(-45deg, #b3e5fc, #81d4fa, #4dd0e1, #b2ebf2);
+  background-size: 400% 400%;
+  animation: gradientMove 12s ease infinite;
+  color: #033649;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+@keyframes gradientMove {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+.partners-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.partner-card {
+  width: 180px;
+  padding: 20px;
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.9);
+  font-weight: 600;
+  font-size: 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.partner-card img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-bottom: 10px;
+}
+
+.partner-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+@media (max-width: 768px) {
+  .partner-card {
+    width: 140px;
+    padding: 15px;
+    font-size: 14px;
+  }
+
+  .partner-card img {
+    width: 80px;
+    height: 80px;
+  }
+}
+</style>

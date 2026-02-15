@@ -1,0 +1,37 @@
+   body {
+      font-family: Arial, sans-serif;
+      background: #f8f8f8;
+      padding: 20px;
+    }
+    .card {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      padding: 20px;
+      margin-bottom: 15px;
+    }
+    .card h3 {
+      margin: 0;
+      color: #264653;
+    }
+    .card p {
+      margin: 5px 0;
+      color: #555;
+    }
+    form {
+      margin-bottom: 20px;
+    }
+    input[type="text"] {
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      width: 250px;
+    }
+    button {
+      padding: 10px 15px;
+      background: #2a9d8f;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }

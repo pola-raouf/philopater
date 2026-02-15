@@ -1,0 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+* {
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+@keyframes gradientMove {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+body {
+  background: linear-gradient(-45deg, #b3e5fc, #81d4fa, #4dd0e1, #b2ebf2);
+  background-size: 400% 400%;
+  animation: gradientMove 12s ease infinite;
+  color: #033649;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.about {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 1s ease-in-out;
+  max-width: 800px;
+  margin-top: 100px;
+}
+
+.about h1 {
+  font-size: 3.5rem;
+  color: #033649;
+  font-weight: 700;
+  margin-bottom: 25px;
+  line-height: 1.2;
+}
+
+.about h1 span {
+  color: #0288d1;
+}
+
+/* Vision & Mission Section */
+.vision-mission {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 25px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.vision-mission h2 {
+  font-size: 1.8rem;
+  color: #01579b;
+  margin-bottom: 10px;
+}
+
+.vision-mission p {
+  font-size: 1rem;
+  color: #033649;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.modern-btn {
+  padding: 14px 38px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(90deg, #4fc3f7, #0288d1);
+  border: none;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0px 4px 8px rgba(2, 136, 209, 0.4);
+}
+
+.modern-btn:hover {
+  background: linear-gradient(90deg, #0288d1, #01579b);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0px 6px 15px rgba(1, 87, 155, 0.5);
+}
+
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(20px);}
+  to {opacity: 1; transform: translateY(0);}
+}
+
+@media (max-width: 768px) {
+  .about h1 {
+    font-size: 2rem;
+  }
+  .vision-mission h2 {
+    font-size: 1.4rem;
+  }
+  .vision-mission p {
+    font-size: 0.9rem;
+  }
+}
