@@ -29,12 +29,18 @@ const insertProduct = async (req, res) => {
     await product.save();
 sendProductRefreshEvent();
 
-    res.status(200).json({
+    res.status(201).json({
       success: true,
       message: 'Product inserted successfully'
     });
-  } catch (err) {
+    } catch (err) {
     console.error(err);
+    if (err.name === 'ValidationError' || err.name === 'CastError' || err.code === 11000) {
+      return res.status(400).json({
+        success: false,
+        message: err.message
+      });
+    }
     res.status(500).json({
       success: false,
       message: 'Error inserting product'
@@ -49,6 +55,13 @@ const searchProduct = async (req, res) => {
         const filter = search ? { name: { $regex: search, $options: 'i' } } : {};
 
         const products = await Product.find(filter);
+        const accept = String(req.get('Accept') || '');
+        if (accept.includes('application/json') && !accept.includes('text/html')) {
+            if (search && products.length === 0) {
+                return res.status(404).json({ success: false, message: 'product not found' });
+            }
+            return res.status(200).json({ products });
+        }
         res.render('products_result', { products, search, pageTitle: 'Search Results' });
     } catch (error) {
         console.error(error);
@@ -57,7 +70,13 @@ const searchProduct = async (req, res) => {
 };
 const deleteProduct = async (req, res) => {
     try {
+        if (!req.body.productname || typeof req.body.productname !== 'string') {
+            return res.status(400).json({ success: false, message: 'productname is required' });
+        }
         const name = req.body.productname.trim();
+        if (!name) {
+            return res.status(400).json({ success: false, message: 'productname is required' });
+        }
        const result = await Product.deleteOne({
             name: { $regex: `^${name}$`, $options: 'i' }
         });
@@ -76,7 +95,17 @@ const deleteProduct = async (req, res) => {
 const updateProduct = async (req, res) => {
     try {
         const { productId, newCountry, newPrice, quntity } = req.body;
+        if (!productId || typeof productId !== 'string') {
+            return res.status(400).json({ success: false, message: 'productId is required' });
+        }
         const image = req.file ? req.file.filename : null;
+
+        if (newPrice !== undefined && newPrice !== '' && Number.isNaN(Number(newPrice))) {
+            return res.status(400).json({ success: false, message: 'newPrice must be a number' });
+        }
+        if (quntity !== undefined && quntity !== '' && Number.isNaN(Number(quntity))) {
+            return res.status(400).json({ success: false, message: 'quntity must be a number' });
+        }
 
         const update = {};
         if (newCountry) update.country = newCountry;
@@ -93,6 +122,9 @@ const updateProduct = async (req, res) => {
         res.status(200).json({ success: true, message: "Product updated successfully" });
     } catch (err) {
         console.error(err);
+        if (err.name === 'ValidationError' || err.name === 'CastError') {
+            return res.status(400).json({ success: false, message: err.message });
+        }
         res.status(500).json({ success: false, message: "Error updating product" });
     }
 };

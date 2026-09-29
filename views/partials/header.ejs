@@ -117,6 +117,92 @@ nav ul li a:hover {
   transform: scale(1.05);
 }
 
+/* === User menu (logged-in state) === */
+.user-menu {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-chip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255,255,255,0.18);
+  border: 1.5px solid rgba(255,255,255,0.5);
+  border-radius: 20px;
+  padding: 6px 14px;
+  cursor: pointer;
+  color: white;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background 0.25s;
+}
+
+.user-chip:hover {
+  background: rgba(255,255,255,0.28);
+}
+
+.user-chip .avatar {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #0288d1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: white;
+  flex-shrink: 0;
+  border: 2px solid white;
+}
+
+.user-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  padding-top: 8px;
+  background: transparent;
+  min-width: 160px;
+  z-index: 2000;
+}
+
+.user-dropdown-inner {
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.18);
+  overflow: hidden;
+}
+
+.user-dropdown a {
+  display: block;
+  padding: 11px 18px;
+  color: #333;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+}
+
+.user-dropdown a:hover {
+  background: #f0f7ff;
+}
+
+.user-dropdown .logout-link {
+  color: #d32f2f;
+  border-top: 1px solid #f0f0f0;
+}
+
+.user-dropdown .logout-link:hover {
+  background: #fff5f5;
+}
+
+.user-menu.open .user-dropdown {
+  display: block;
+}
+
 .hamburger {
   display: none;
   flex-direction: column;
@@ -275,6 +361,40 @@ body.menu-active::before {
     background: #e0f7fa;
     transform: scale(1.05);
   }
+
+  /* Mobile user section */
+  .side-menu .user-section {
+    margin-top: auto;
+    border-top: 1px solid #eee;
+    padding: 12px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .side-menu .user-section .user-name {
+    padding: 10px 20px;
+    font-weight: 600;
+    color: #0288d1;
+    font-size: 0.95rem;
+  }
+
+  .side-menu .user-section a {
+    padding: 12px 20px;
+    color: #333;
+    text-decoration: none;
+    display: block;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+  }
+
+  .side-menu .user-section a:hover {
+    background: rgba(0,0,0,0.06);
+  }
+
+  .side-menu .user-section .logout-link {
+    color: #d32f2f;
+  }
 }
 </style>
 </head>
@@ -316,7 +436,22 @@ body.menu-active::before {
       <div></div>
     </div>
 
+    <% if (locals.user) { %>
+    <div class="user-menu">
+      <div class="user-chip">
+        <div class="avatar"><%= locals.user.username ? locals.user.username.charAt(0).toUpperCase() : '?' %></div>
+        <span><%= locals.user.username %></span>
+        <span style="font-size:0.75rem;opacity:0.8;">▾</span>
+      </div>
+      <div class="user-dropdown">
+        <div class="user-dropdown-inner">
+          <a href="/logout" class="logout-link">Logout</a>
+        </div>
+      </div>
+    </div>
+    <% } else { %>
     <a href="/signin" class="sign-in-btn">Sign Up</a>
+    <% } %>
   </nav>
 </header>
 
@@ -352,7 +487,14 @@ body.menu-active::before {
     <li><a href="/partners">partners</a></li>
   </ul>
 
+  <% if (locals.user) { %>
+  <div class="user-section">
+    <div class="user-name">👤 <%= locals.user.username %></div>
+    <a href="/logout" class="logout-link">Logout</a>
+  </div>
+  <% } else { %>
   <a href="/signin" class="sign-in-btn">Sign Up</a>
+  <% } %>
 </div>
 
 <script>
@@ -406,6 +548,22 @@ body.addEventListener('click', (e) => {
 sideMenu.addEventListener('click', (e) => {
   e.stopPropagation();
 });
+
+// === User-chip dropdown toggle ===
+const userMenu = document.querySelector('.user-menu');
+if (userMenu) {
+  const userChip = userMenu.querySelector('.user-chip');
+  userChip.addEventListener('click', (e) => {
+    e.stopPropagation();
+    userMenu.classList.toggle('open');
+  });
+  // Close when clicking anywhere outside the menu
+  document.addEventListener('click', (e) => {
+    if (!userMenu.contains(e.target)) {
+      userMenu.classList.remove('open');
+    }
+  });
+}
 </script>
 
 </body>

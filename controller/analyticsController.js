@@ -11,4 +11,4 @@ async function initializeAnalytics() {
     );
   }
 }
-initializeAnalytics();
+initializeAnalytics().catch((err) => console.error('Analytics init error:', err.message));
